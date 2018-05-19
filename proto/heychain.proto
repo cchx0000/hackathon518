@@ -1,0 +1,26 @@
+syntax = "proto3";
+ 
+package heychain;
+
+enum NODETYPE {
+    PUBLIC = 0;
+    TRADER = 1;
+    MARKET = 2;
+    MARKETMAKER = 3;
+}
+
+message HeyRequest {
+    string addr = 1;
+    NODETYPE nodeType = 2;
+    string servAddr = 3;
+}
+
+message HeyReply {
+    string addr = 1;
+    NODETYPE nodeType = 2;
+    string servAddr = 3;
+}
+ 
+service HeyService {
+  rpc hey (HeyRequest) returns (stream HeyReply) {}
+}

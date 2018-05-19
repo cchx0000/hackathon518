@@ -1,0 +1,24 @@
+{
+  "name": "hackathon518",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhs007/hackathon518.git"
+  },
+  "author": "zhs007",
+  "license": "Apache",
+  "bugs": {
+    "url": "https://github.com/zhs007/hackathon518/issues"
+  },
+  "homepage": "https://github.com/zhs007/hackathon518#readme",
+  "dependencies": {
+    "async": "^2.6.0",
+    "grpc": "^1.11.3",
+    "libbitcoincrypo": "^1.0.2"
+  }
+}
