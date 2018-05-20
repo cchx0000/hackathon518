@@ -25,11 +25,19 @@ message ChannelRequest {
     string symbol0 = 1;
     string symbol1 = 2;    
     string channel = 3;
+    string addr = 4;
 }
 
 message OrderBook {
     uint64 price = 1;
     uint64 volume = 2;
+    string side = 3;
+}
+
+message Deal {
+    uint64 price = 1;
+    uint64 volume = 2;
+    string side = 3;
 }
 
 message ChannelReply {
@@ -37,6 +45,7 @@ message ChannelReply {
     string symbol1 = 2;
     string channel = 3;
     OrderBook orderbook = 4;
+    Deal deal = 5;
 }
 
 message NewOrder {
@@ -46,6 +55,7 @@ message NewOrder {
     uint64 volume = 4;
     string clientOrderId = 5;
     string orderType = 6;
+    string addr = 7;
 }
 
 message OrderUpd {
