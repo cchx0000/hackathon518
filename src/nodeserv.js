@@ -101,7 +101,7 @@ class HeyChainServ extends RpcServ {
                 this.funcOnNewOrder(msg.addr,
                     msg.symbol0, msg.symbol1,
                     msg.clientOrderId, msg.orderType == 'ask' ? ORDERSIDE.ASK : ORDERSIDE.BID,
-                    msg.price, msg.volume);
+                    parseInt(msg.price), parseInt(msg.volume));
             }
         });
         call.on('end', function() {

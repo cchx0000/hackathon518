@@ -35,6 +35,7 @@ class Market {
     }
 
     onDeal(serv, symbol0, symbol1, orderside, price, volume) {
+        console.log('deal ' + price + ' ' + volume);
         this.mapChannel_deal.broadcast(serv, symbol0, symbol1, {
             symbol0: symbol0,
             symbol1: symbol1,

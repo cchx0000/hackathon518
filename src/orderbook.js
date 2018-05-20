@@ -10,7 +10,7 @@ class OrderBook {
 
     onNewOrder(addr, orderId, side, price, volume, callback, funcOnDeal) {
         if (side == ORDERSIDE.ASK) {
-            let ret = this._checkDeal_bid(addr, orderId, price, volume, callback);
+            let ret = this._checkDeal_bid(addr, orderId, price, volume, callback, funcOnDeal);
             if (ret.volume > 0) {
                 this._insAsks(addr, orderId, price, volume, ret.avgPrice, ret.dealVolume, callback);
             }
@@ -34,6 +34,11 @@ class OrderBook {
             }
             else {
                 cv = volume;
+            }
+
+            if (isNaN(cn.avgPrice) || isNaN(cn.avgPrice)) {
+                cn.avgPrice = 0;
+                cn.dealVolume = 0;
             }
 
             let askorder = {
@@ -153,7 +158,7 @@ class OrderBook {
         };
     }
 
-    _onDeal_ask(curnode, addr, price, volume, avgPrice, dealVolume, funcOnDeal) {
+    _onDeal_bid(curnode, addr, price, volume, avgPrice, dealVolume, funcOnDeal) {
         let lstchild = curnode.lst;
         for (let i = 0; i < lstchild.length; ) {
             let cn = lstchild[i];
@@ -164,6 +169,11 @@ class OrderBook {
             }
             else {
                 cv = volume;
+            }
+
+            if (isNaN(cn.avgPrice) || isNaN(cn.avgPrice)) {
+                cn.avgPrice = 0;
+                cn.dealVolume = 0;
             }
 
             let bidorder = {
