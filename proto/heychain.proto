@@ -20,7 +20,46 @@ message HeyReply {
     NODETYPE nodeType = 2;
     string servAddr = 3;
 }
+
+message ChannelRequest {
+    string symbol0 = 1;
+    string symbol1 = 2;    
+    string channel = 3;
+}
+
+message OrderBook {
+    uint64 price = 1;
+    uint64 volume = 2;
+}
+
+message ChannelReply {
+    string symbol0 = 1;
+    string symbol1 = 2;
+    string channel = 3;
+    OrderBook orderbook = 4;
+}
+
+message NewOrder {
+    string symbol0 = 1;
+    string symbol1 = 2;
+    uint64 price = 3;
+    uint64 volume = 4;
+    string clientOrderId = 5;
+    string orderType = 6;
+}
+
+message OrderUpd {
+    string clientOrderId = 1;
+    string symbol0 = 2;
+    string symbol1 = 3;
+    uint64 avgPrice = 4;
+    uint64 lastVolume = 5;
+}
  
 service HeyService {
   rpc hey (HeyRequest) returns (stream HeyReply) {}
+
+  rpc requestChannels (stream ChannelRequest) returns (stream ChannelReply) {}
+
+  rpc newOrder (stream NewOrder) returns (stream OrderUpd) {}
 }

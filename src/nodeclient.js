@@ -8,8 +8,9 @@ class HeyChainClient extends RpcClient {
         super(servaddr, 
             proto, 
             'heychain', 
-            'HeyService', 
-            {'hey': (call) => { this.hey(call); }});
+            'HeyService');
+
+        this.callTrade = undefined;
     }
 
     requestHey(prikey, nodetype, servaddr, callback) {
@@ -34,6 +35,33 @@ class HeyChainClient extends RpcClient {
                 });
             }
         });
+    }
+
+    startTrade(symbol0, symbol1, price, valume) {
+        this.callTrade = this.client.hey({
+            addr: prikey,
+            nodeType: nodetype,
+            servAddr: servaddr
+        });
+
+        call.on('error', () => {
+            setTimeout(() => {
+                this.requestHey(prikey, nodetype, servaddr, callback);
+            }, 3 * 1000);
+        });
+        
+        call.on('data', (msg) => {
+            if (msg.servAddr != servaddr && msg.servAddr != this.servaddr) {
+                callback({
+                    addr: prikey,
+                    nodeType: nodetype,
+                    servAddr: servaddr
+                });
+            }
+        });
+    }
+
+    newOrder(symbol0, symbol1, price, valume, callback) {
     }
 };
 
