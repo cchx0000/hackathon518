@@ -91,7 +91,7 @@ class HeyChainServ extends RpcServ {
 
     newOrder(call) {
         call.on('data', (msg) => {
-            console.log('new order ' + msg.addr);
+            console.log('new order ' + msg.price + ' ' + msg.volume + ' ' + msg.orderType);
 
             if (this.mapNode[msg.addr]) {
                 this.mapNode[msg.addr].callNewOrder = call;

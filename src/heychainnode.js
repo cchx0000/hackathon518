@@ -43,6 +43,10 @@ class HeyChainNode {
 
         client.requestHey(this.serv.prikey, this.serv.nodetype, 
             this.serv.servaddr, (msg) => {
+            if (msg == undefined) {
+                return ;
+            }
+
                 if (this.mapClient_ServAddr[msg.servAddr]) {
                     return ;
                 }
